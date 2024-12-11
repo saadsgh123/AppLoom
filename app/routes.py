@@ -6,5 +6,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def landing_page():
-
-    return f"{client.list_database_names()}"
+    db = client["saad"]
+    collection = db["users"]
+    return f"{collection.find()}"
