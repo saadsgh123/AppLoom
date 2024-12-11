@@ -4,4 +4,4 @@ if __name__ == '__main__':
     db = client["saad"]
     collection = db["users"]
     user = {"username": "saad", "password": "<PASSWORD>"}
-    collection.insert_one()
+    collection.insert_one(user)
