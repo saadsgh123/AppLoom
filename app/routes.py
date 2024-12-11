@@ -7,4 +7,4 @@ storage = DBStorage()
 
 @app.route('/')
 def landing_page():
-    return type(storage.find_all())
+    return f"{type(storage.find_all())}"
