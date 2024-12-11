@@ -12,8 +12,8 @@ class DBStorage:
 
         Args:
             uri (str): MongoDB connection URI.
-            database_name (str): Name of the database to use.
-            collection_name (str): Name of the collection to use.
+            Database_name (str): Name of the database to use.
+            Collection_name (str): Name of the collection to use.
         """
         self.client = MongoClient(uri)
         self.db = self.client[database_name]

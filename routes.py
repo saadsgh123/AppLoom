@@ -10,4 +10,4 @@ def landing_page():
     users = storage.find_all()
     for user in users:
         print(user["username"])
-    return "<H1> hELLO APPLOOM</H1>"
+    return "<H1> HELLO APPLOOM </H1>"
