@@ -7,5 +7,7 @@ storage = DBStorage()
 
 @app.route('/')
 def landing_page():
-    print(f"{type(storage.find_all())}")
+    users = storage.find_all()
+    for user in users:
+        print(user["username"])
     return "<H1> hELLO APPLOOM</H1>"
