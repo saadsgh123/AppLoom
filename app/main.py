@@ -1,7 +1,7 @@
 if __name__ == '__main__':
-    from models.engine.db_storage import client
+    from models.engine.db_storage import DBStorage
 
-    db = client["saad"]
-    collection = db["users"]
-    user = {"username": "saad", "password": "<PASSWORD>"}
-    collection.insert_one(user)
+    storage = DBStorage()
+    user = {"username": "saad", "password": "kdopewjdiwe"}
+    storage.insert_one(user)
+    storage.close_connection()
