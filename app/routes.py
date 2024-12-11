@@ -7,4 +7,4 @@ app = Flask(__name__)
 @app.route('/')
 def landing_page():
 
-    return client.list_database_names()
+    return f"{client.list_database_names()}"
