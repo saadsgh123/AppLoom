@@ -12,13 +12,14 @@ def index():
     return render_template('index.html', users=users)
 
 
+@app.route('/add', defaults={'user_id': None})
 @app.route('/add/<user_id>')
-@app.route('/add')
 def add(user_id):
-    user = storage.find_one({'id': user_id})
-    if user:
-        redirect("/add", user=user)
-    return render_template('add.html')
+    user = None
+    if user_id:
+        user = storage.find_one({'id': user_id})
+    return render_template('add.html', user=user)
+
 
 
 @app.route('/submit', methods=['POST'])
@@ -29,8 +30,6 @@ def submit():
     password = request.form.get('password')
     user = User(username=username, email=email, password=password)
     user.save()
-
-
 
     # Log the data for testing purposes
     app.logger.info(f"Received data: Username={username}, Email={email}, Password={password}")
