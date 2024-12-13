@@ -15,12 +15,7 @@ def index():
 @app.route('/add/<user_id>')
 @app.route('/add')
 def add(user_id):
-    print("This user id", user_id)
-    user = storage.find_one({'id': '9c9910e3-bbf9-4622-ae49-6f25a6dc4f91'})
-    if user:
-        print(user)
-    else:
-        print("user not found")
+    user = storage.find_one({'id': user_id})
     return render_template('add.html', user=user)
 
 
