@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 
 from models import storage
 from models.user import User
@@ -31,7 +31,7 @@ def submit():
     # Log the data for testing purposes
     app.logger.info(f"Received data: Username={username}, Email={email}, Password={password}")
 
-    return render_template("index.html")
+    return redirect("/")
 
 
 if __name__ == '__main__':
