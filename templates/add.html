@@ -10,7 +10,7 @@
     <h1>User Information Form</h1>
     <form action="/submit" method="POST">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="{{ user.username }}" required>
+        <input type="text" id="username" name="username" value="{{ user[username] }}" required>
         <br><br>
 
         <label for="email">Email:</label>
