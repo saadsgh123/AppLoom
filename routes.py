@@ -31,7 +31,7 @@ def submit():
     # Log the data for testing purposes
     app.logger.info(f"Received data: Username={username}, Email={email}, Password={password}")
 
-    return render_template("/")
+    return render_template("index.html")
 
 
 if __name__ == '__main__':
