@@ -8,7 +8,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    users = storage.find_all()
+    return render_template('index.html', users=users)
+
+
+@app.route('/add')
+def add():
+    return render_template('add.html')
 
 
 @app.route('/submit', methods=['POST'])

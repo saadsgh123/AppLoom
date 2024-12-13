@@ -29,7 +29,6 @@ class DBStorage:
         Returns:
             InsertOneResult: The result of the insert operation.
         """
-        print(f"Inserting document: {data}")
         return self.collection.insert_one(data)
 
     def insert_many(self, data_list):
@@ -55,7 +54,6 @@ class DBStorage:
         Returns:
             dict: The matched document or None if no match is found.
         """
-        print(f"Finding one document with query: {query}")
         return self.collection.find_one(query)
 
     def find_all(self):
@@ -65,7 +63,6 @@ class DBStorage:
         Returns:
             list: List of all documents in the collection.
         """
-        print("Retrieving all documents from the collection.")
         return list(self.collection.find())
 
     def update_one(self, query, update):
@@ -79,7 +76,6 @@ class DBStorage:
         Returns:
             UpdateResult: The result of the update operation.
         """
-        print(f"Updating one document with query: {query} and update: {update}")
         return self.collection.update_one(query, update)
 
     def delete_one(self, query):
@@ -92,7 +88,6 @@ class DBStorage:
         Returns:
             DeleteResult: The result of the delete operation.
         """
-        print(f"Deleting one document with query: {query}")
         return self.collection.delete_one(query)
 
     def delete_many(self, query):
@@ -105,12 +100,10 @@ class DBStorage:
         Returns:
             DeleteResult: The result of the delete operation.
         """
-        print(f"Deleting multiple documents with query: {query}")
         return self.collection.delete_many(query)
 
     def close_connection(self):
         """
         Close the MongoDB client connection.
         """
-        print("Closing the MongoDB client connection.")
         self.client.close()
