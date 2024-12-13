@@ -12,7 +12,7 @@ def index():
     return render_template('index.html', users=users)
 
 
-@app.route('/add')
+@app.route('/add/<user_id>')
 def add(user_id):
     user = storage.find_one({'id': user_id})
     return render_template('add.html', user=user)
