@@ -31,7 +31,7 @@ def submit():
     # Log the data for testing purposes
     app.logger.info(f"Received data: Username={username}, Email={email}, Password={password}")
 
-    return f"Form submitted successfully! Received Username: {username}, Email: {email}."  # Simple confirmation message
+    return render_template("/")
 
 
 if __name__ == '__main__':
