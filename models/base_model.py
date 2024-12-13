@@ -42,8 +42,7 @@ class BaseModel:
     def save(self):
         """updates the attribute 'updated_at' with the current datetime"""
         self.updated_at = datetime.utcnow()
-        models.storage.new(self)
-        models.storage.save()
+        models.storage.insert_one(self.to_dict())
 
     def to_dict(self, save_fs=None):
         """returns a dictionary containing all keys/values of the instance"""

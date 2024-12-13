@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 
 from models import storage
-from models.engine.db_storage import DBStorage
+from models.user import User
 
 app = Flask(__name__)
 
@@ -17,9 +17,10 @@ def submit():
     username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
+    user = User(username=username, email=email, password=password)
+    user.save()
 
-    storage = DBStorage()
-    storage.insert_one({"name": username, "email": email, "password": password})
+
 
     # Log the data for testing purposes
     app.logger.info(f"Received data: Username={username}, Email={email}, Password={password}")
