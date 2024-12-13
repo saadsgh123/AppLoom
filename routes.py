@@ -1,13 +1,25 @@
-#!/usr/bin/python3
-from flask import Flask
-from models.engine.db_storage import DBStorage
+from flask import Flask, request, render_template
+
 app = Flask(__name__)
-storage = DBStorage()
 
 
 @app.route('/')
-def landing_page():
-    users = storage.find_all()
-    for user in users:
-        print(user["username"])
-    return "<H1> HELLO APPLOOM </H1>"
+def index():
+    return render_template('index.html')
+
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    # Retrieve form data
+    username = request.form.get('username')
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    # Log the data for testing purposes
+    app.logger.info(f"Received data: Username={username}, Email={email}, Password={password}")
+
+    return f"Form submitted successfully! Received Username: {username}, Email: {email}."  # Simple confirmation message
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
