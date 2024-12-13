@@ -16,7 +16,10 @@ def index():
 @app.route('/add')
 def add(user_id):
     user = storage.find_one({'id': user_id})
-    print(user)
+    if user:
+        print(user)
+    else:
+        print("user not found")
     return render_template('add.html', user=user)
 
 
