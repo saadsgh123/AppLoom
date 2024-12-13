@@ -13,8 +13,9 @@ def index():
 
 
 @app.route('/add')
-def add():
-    return render_template('add.html')
+def add(user_id):
+    user = storage.find_one({'id': user_id})
+    return render_template('add.html', user=user)
 
 
 @app.route('/submit', methods=['POST'])
