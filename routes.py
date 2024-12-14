@@ -40,6 +40,14 @@ def submit(user_id=None):
     return redirect("/")
 
 
+@app.route("/delete/<user_id>", methods=['DELETE'])
+def delete(user_id):
+    if user_id:
+        user = storage.find_one({'id': user_id})
+        if user:
+            storage.delete_one({'id': user_id})
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
