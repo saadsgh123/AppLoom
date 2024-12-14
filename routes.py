@@ -1,16 +1,13 @@
 from flask import Flask, request, render_template, redirect, url_for
-
 from models import storage
 from models.user import User
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def index():
     users = storage.find_all()
     return render_template('index.html', users=users)
-
 
 @app.route('/add', defaults={'user_id': None})
 @app.route('/add/<user_id>')
@@ -18,15 +15,15 @@ def add(user_id):
     user = None
     if user_id:
         user = storage.find_one({'id': user_id})
-        return redirect(url_for("submit"), user)
+        return redirect(url_for("submit", user_id=user.id))  # Pass user_id
     return render_template('add.html', user=user)
 
 
-
 @app.route('/submit', methods=['POST'])
-@app.route('/submit/<user>', methods=['POST'])
-def submit(user):
-    if user:
+@app.route('/submit/<user_id>', methods=['POST'])  # Accept user_id
+def submit(user_id=None):
+    if user_id:
+        user = storage.find_one({'id': user_id})
         print(user)
     else:
         username = request.form.get('username')
