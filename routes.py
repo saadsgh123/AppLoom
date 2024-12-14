@@ -31,7 +31,7 @@ def submit(user_id=None):
             user['username'] = request.form.get('username')
             user['email'] = request.form.get('email')
             user_obj = User(**user)
-            storage.update(user_obj)
+            user_obj.update()
     else:
         username = request.form.get('username')
         email = request.form.get('email')
