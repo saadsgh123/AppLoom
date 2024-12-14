@@ -54,11 +54,10 @@
             <tr>
                 <td>{{ user['username'] }}</td>
                 <td>{{ user['email'] }}</td>
-                <td><a href="/add/{{ user['id'] }}" class="button">Details</a></td>
                 <td>
                     <a href="/add/{{ user['id'] }}" class="button">Details</a>
                     <form action="{{ url_for('delete', user_id=user['id']) }}" method="POST" style="display:inline;">
-                    <button type="submit" class="button">Delete</button>
+                        <button type="submit" class="button">Delete</button>
                     </form>
                 </td>
             </tr>
