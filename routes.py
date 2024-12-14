@@ -18,7 +18,7 @@ def add(user_id):
     if user_id:
         # Fetch the user from storage if user_id is provided
         user = storage.find_one({'id': user_id})
-        return render_template('add.html', user=user.id)  # Render add.html to edit the user
+        return render_template('add.html', user=user['id'])  # Render add.html to edit the user
     return render_template('add.html')
 
 
