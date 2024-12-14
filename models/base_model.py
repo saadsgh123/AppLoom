@@ -65,4 +65,4 @@ class BaseModel:
 
     def delete(self):
         """delete the current instance from the storage"""
-        models.storage.delete_one(self.to_dict())
+        models.storage.delete_one({'id': self.id}, {'$set': self.to_dict()})
