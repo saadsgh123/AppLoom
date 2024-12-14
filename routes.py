@@ -27,7 +27,7 @@ def submit():
     # Retrieve form data
     username = request.form.get('username')
     email = request.form.get('email')
-    user = storage.find_one({"username": username, "email": email})
+    user = storage.find_one({"username": 'saadsgh', "email": 'mehdi.nasser@gmail.com'})
     print("User", user)
     user_obj = User(user)
     print("USER_OBJ", user_obj)
