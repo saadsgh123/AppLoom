@@ -18,23 +18,28 @@ def add(user_id):
     if user_id:
         # Fetch the user from storage if user_id is provided
         user = storage.find_one({'id': user_id})
-        return render_template('add.html', user=user['id'])  # Render add.html to edit the user
-    return render_template('add.html')
+    return render_template('add.html', user=user)  # Pass the full user object, not just user['id']
 
 
 @app.route('/submit', methods=['POST'])
 @app.route('/submit/<user_id>', methods=['POST'])  # Accept user_id
 def submit(user_id=None):
     if user_id:
-        print("User found", user_id)
+        # Update existing user
+        user = storage.find_one({'id': user_id})
+        if user:
+            user['username'] = request.form.get('username')
+            user['email'] = request.form.get('email')
+            storage.update_one({'id': user_id}, {'$set': user})  # Update user in the database
     else:
-        print("User not found")
+        # Create new user
         username = request.form.get('username')
         email = request.form.get('email')
         new_user = User(username=username, email=email)
         new_user.save()
 
     return redirect("/")
+
 
 
 if __name__ == '__main__':
