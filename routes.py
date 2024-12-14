@@ -18,23 +18,21 @@ def add(user_id):
     user = None
     if user_id:
         user = storage.find_one({'id': user_id})
+        return redirect("/add", user)
     return render_template('add.html', user=user)
 
 
 
 @app.route('/submit', methods=['POST'])
-def submit():
-    # Retrieve form data
-    username = request.form.get('username')
-    email = request.form.get('email')
-    user = storage.find_one({"username": 'saadsgh', "email": 'mehdi.nasser@gmail.com'})
-    print("User", user)
-    user_obj = User(user)
-    print("USER_OBJ", user_obj)
+@app.route('/submit/<user>', methods=['POST'])
+def submit(user):
     if user:
-        user_obj.update()
+        print(user)
     else:
-        user_obj.save()
+        username = request.form.get('username')
+        email = request.form.get('email')
+        new_user = User(username=username, email=email)
+        new_user.save()
 
     return redirect("/")
 
