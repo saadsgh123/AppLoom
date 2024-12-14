@@ -55,10 +55,12 @@
                 <td>{{ user['username'] }}</td>
                 <td>{{ user['email'] }}</td>
                 <td><a href="/add/{{ user['id'] }}" class="button">Details</a></td>
-                <form action="{{ url_for('delete', user_id=user['id']) }}" method="POST" style="display:inline;">
+                <td>
+                    <a href="/add/{{ user['id'] }}" class="button">Details</a>
+                    <form action="{{ url_for('delete', user_id=user['id']) }}" method="POST" style="display:inline;">
                     <button type="submit" class="button">Delete</button>
-                </form>
-
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
