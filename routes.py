@@ -28,6 +28,7 @@ def submit(user=None):
     if user:
         print(user)
     else:
+        print("User not found")
         username = request.form.get('username')
         email = request.form.get('email')
         new_user = User(username=username, email=email)
