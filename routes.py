@@ -23,10 +23,9 @@ def add(user_id):
 
 
 @app.route('/submit', methods=['POST'])
-@app.route('/submit/<user_id>', methods=['POST'])  # Accept user_id
-def submit(user_id=None):
-    if user_id:
-        user = storage.find_one({'id': user_id})
+@app.route('/submit/<user>', methods=['POST'])  # Accept user_id
+def submit(user=None):
+    if user:
         print(user)
     else:
         username = request.form.get('username')
