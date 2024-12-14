@@ -46,7 +46,7 @@ def delete(user_id):
         user = storage.find_one({'id': user_id})
         if user:
             storage.delete_one({'id': user_id})
-    return render_template("/")
+    return redirect(url_for('index'))
 
 
 
