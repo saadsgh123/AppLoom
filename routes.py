@@ -18,15 +18,15 @@ def add(user_id):
     if user_id:
         # Fetch the user from storage if user_id is provided
         user = storage.find_one({'id': user_id})
-        return render_template('add.html', user=user)  # Render add.html to edit the user
+        return render_template('add.html', user=user.id)  # Render add.html to edit the user
     return render_template('add.html')
 
 
 @app.route('/submit', methods=['POST'])
 @app.route('/submit/<user>', methods=['POST'])  # Accept user_id
-def submit(user=None):
-    if user:
-        print(user)
+def submit(user_id=None):
+    if user_id:
+        print(user_id)
     else:
         print("User not found")
         username = request.form.get('username')
