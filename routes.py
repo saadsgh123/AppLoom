@@ -46,9 +46,7 @@ def delete(user_id):
         user = storage.find_one({'id': user_id})
         if user:
             storage.delete_one({'id': user_id})
-            flash("User deleted successfully.", "success")
-        else:
-            flash("User not found.", "error")
+            # flash("User deleted successfully.", "success")
     return redirect(url_for('index'))
 
 
