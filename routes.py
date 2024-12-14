@@ -28,7 +28,9 @@ def submit():
     username = request.form.get('username')
     email = request.form.get('email')
     user = storage.find_one({"username": username, "email": email})
+    print("User", user)
     user_obj = User(user)
+    print("USER_OBJ", user_obj)
     if user:
         user_obj.update()
     else:
