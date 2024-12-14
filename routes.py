@@ -26,7 +26,7 @@ def add(user_id):
 @app.route('/submit/<user_id>', methods=['POST'])  # Accept user_id
 def submit(user_id=None):
     if user_id:
-        print(user_id)
+        print("User found", user_id)
     else:
         print("User not found")
         username = request.form.get('username')
