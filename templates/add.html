@@ -8,18 +8,50 @@
 <body>
 
     <h1>User Information Form</h1>
-    <form action="/submit{{ '/'+user.id if user else '' }}" method="POST">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" value="{{ user.username if user else '' }}" required>
-    <br><br>
+    <form action="/submit{{ '/' + user.id if user else '' }}" method="POST">
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="{{ user.email if user else '' }}" required>
-    <br><br>
+        <!-- Basic Information -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="{{ user.username if user else '' }}" required>
+        <br><br>
 
-    <button type="submit">Submit</button>
-</form>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email if user else '' }}" required>
+        <br><br>
 
+        <!-- Additional Information -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" value="{{ user.phone if user and user.phone else '' }}" required>
+        <br><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" value="{{ user.address if user and user.address else '' }}">
+        <br><br>
+
+        <!-- Work Experience -->
+        <label for="work_experience">Work Experience:</label>
+        <textarea id="work_experience" name="work_experience" rows="4" placeholder="Describe your work experience">{{ user.work_experience if user and user.work_experience else '' }}</textarea>
+        <br><br>
+
+        <!-- Education -->
+        <label for="education">Education:</label>
+        <textarea id="education" name="education" rows="4" placeholder="Provide details of your education">{{ user.education if user and user.education else '' }}</textarea>
+        <br><br>
+
+        <!-- Skills -->
+        <label for="skills">Skills:</label>
+        <textarea id="skills" name="skills" rows="4" placeholder="List your skills">{{ user.skills if user and user.skills else '' }}</textarea>
+        <br><br>
+
+        <!-- Bio -->
+        <label for="bio">Short Bio:</label>
+        <textarea id="bio" name="bio" rows="4" placeholder="Write a short bio about yourself">{{ user.bio if user and user.bio else '' }}</textarea>
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+
+    </form>
 
 </body>
 </html>
