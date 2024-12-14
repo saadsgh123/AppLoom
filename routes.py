@@ -4,19 +4,22 @@ from models.user import User
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     users = storage.find_all()
     return render_template('index.html', users=users)
+
 
 @app.route('/add', defaults={'user_id': None})
 @app.route('/add/<user_id>')
 def add(user_id):
     user = None
     if user_id:
+        # Fetch the user from storage if user_id is provided
         user = storage.find_one({'id': user_id})
-        return redirect(url_for("submit", user_id=user.id))  # Pass user_id
-    return render_template('add.html', user=user)
+        return render_template('add.html', user=user)  # Render add.html to edit the user
+    return render_template('add.html')
 
 
 @app.route('/submit', methods=['POST'])
