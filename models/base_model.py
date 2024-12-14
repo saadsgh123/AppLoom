@@ -46,7 +46,7 @@ class BaseModel:
 
     def update(self):
         self.updated_at = datetime.utcnow()
-        models.storage.update_one(self.to_dict())
+        models.storage.update_one({'id': self.id}, {'$set': self.to_dict()})
 
     def to_dict(self, save_fs=None):
         """returns a dictionary containing all keys/values of the instance"""

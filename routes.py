@@ -30,7 +30,8 @@ def submit(user_id=None):
         if user:
             user['username'] = request.form.get('username')
             user['email'] = request.form.get('email')
-            storage.update_one({'id': user_id}, {'$set': user})
+            user_obj = User(**user)
+            storage.update(user_obj)
     else:
         username = request.form.get('username')
         email = request.form.get('email')
