@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, flash
 from models import storage
 from models.user import User
 
@@ -46,7 +46,11 @@ def delete(user_id):
         user = storage.find_one({'id': user_id})
         if user:
             storage.delete_one({'id': user_id})
+            flash("User deleted successfully.", "success")
+        else:
+            flash("User not found.", "error")
     return redirect(url_for('index'))
+
 
 
 
