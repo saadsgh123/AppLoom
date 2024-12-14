@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for
 
 from models import storage
 from models.user import User
@@ -18,7 +18,7 @@ def add(user_id):
     user = None
     if user_id:
         user = storage.find_one({'id': user_id})
-        return redirect("/submit", user)
+        return redirect(url_for("submit", user))
     return render_template('add.html', user=user)
 
 
