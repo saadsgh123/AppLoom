@@ -18,7 +18,7 @@ def add(user_id):
     user = None
     if user_id:
         user = storage.find_one({'id': user_id})
-        return redirect(url_for("submit", user))
+        return redirect(url_for("submit"), user)
     return render_template('add.html', user=user)
 
 
