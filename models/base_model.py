@@ -44,6 +44,10 @@ class BaseModel:
         self.updated_at = datetime.utcnow()
         models.storage.insert_one(self.to_dict())
 
+    def update(self):
+        self.updated_at = datetime.utcnow()
+        models.storage.update_one(self.to_dict())
+
     def to_dict(self, save_fs=None):
         """returns a dictionary containing all keys/values of the instance"""
         new_dict = self.__dict__.copy()
@@ -61,4 +65,4 @@ class BaseModel:
 
     def delete(self):
         """delete the current instance from the storage"""
-        models.storage.delete_one(self)
+        models.storage.delete_one(self.to_dict())

@@ -28,11 +28,12 @@ def submit():
     username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
-    user = User(username=username, email=email, password=password)
-    user.save()
-
-    # Log the data for testing purposes
-    app.logger.info(f"Received data: Username={username}, Email={email}, Password={password}")
+    user = storage.find_one({"username": username, "email": email, "password": password})
+    user_obj = User(user)
+    if user:
+        user_obj.update()
+    else:
+        user_obj.save()
 
     return redirect("/")
 

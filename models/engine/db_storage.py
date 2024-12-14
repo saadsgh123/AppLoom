@@ -41,7 +41,6 @@ class DBStorage:
         Returns:
             InsertManyResult: The result of the insert operation.
         """
-        print(f"Inserting documents: {data_list}")
         return self.collection.insert_many(data_list)
 
     def find_one(self, query):
