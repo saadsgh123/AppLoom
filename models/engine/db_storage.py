@@ -1,10 +1,15 @@
 from pymongo import MongoClient
 
+from models.base_model import BaseModel
+from models.user import User
+
 
 class DBStorage:
     """
     A class to handle CRUD operations for MongoDB collections.
     """
+
+    collections = {"User": 'users', 'JobApp': 'jobapps'}
 
     def __init__(self, uri="mongodb://localhost:27017", database_name="apploom", collection_name="users"):
         """
@@ -17,9 +22,9 @@ class DBStorage:
         """
         self.client = MongoClient(uri)
         self.db = self.client[database_name]
-        self.collection = self.db[collection_name]
+        # self.collection = self.db[collection_name]
 
-    def insert_one(self, data):
+    def insert_one(self, data: BaseModel):
         """
         Insert a single document into the collection.
 
@@ -29,7 +34,7 @@ class DBStorage:
         Returns:
             InsertOneResult: The result of the insert operation.
         """
-        return self.collection.insert_one(data)
+        return self.collections[data.__class__.__name__].insert_one(data.to_dict())
 
     def insert_many(self, data_list):
         """
