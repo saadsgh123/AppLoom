@@ -87,7 +87,7 @@
         <!-- Left Form Section -->
         <div class="form-section">
             <h1>Job Application</h1>
-            <form method="POST" action="{{ url_for('generate_application') }}">
+            <form method="POST" action="">
                 <label for="job-title">Job Title</label>
                 <input type="text" id="job-title" name="job_title" placeholder="Enter Job Title" required>
 
@@ -128,7 +128,7 @@
             </div>
             {% else %}
             <!-- Default Layout -->
-            <form method="POST" action="{{ url_for('generate_application') }}">
+            <form method="POST" action="">
                 <button type="submit" class="regenerate">
                     Generate Application
                 </button>
