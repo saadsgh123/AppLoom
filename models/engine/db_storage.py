@@ -34,7 +34,7 @@ class DBStorage:
         Returns:
             InsertOneResult: The result of the insert operation.
         """
-        return self.collections[data.__class__.__name__].insert_one(data.to_dict())
+        return self.db[self.collections[data.__class__.__name__]].insert_one(data.to_dict())
 
     def insert_many(self, data_list):
         """
