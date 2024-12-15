@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for, flash
 from models import storage
+from models.job_app import JobApp
 from models.user import User
 
 app = Flask(__name__)
@@ -26,17 +27,17 @@ def add(user_id):
 def submit(user_id=None):
     if user_id:
         # Update existing user
-        user = storage.find_one({'id': user_id})
-        if user:
-            user['username'] = request.form.get('username')
-            user['email'] = request.form.get('email')
-            user_obj = User(**user)
-            user_obj.update()
+        job = storage.find_one({'id': user_id})
+        if job:
+            job['username'] = request.form.get('username')
+            job['email'] = request.form.get('email')
+            job_obj = JobApp(**job)
+            job_obj.update()
     else:
         username = request.form.get('username')
         email = request.form.get('email')
-        new_user = User(username=username, email=email)
-        new_user.save()
+        new_job = JobApp(username=username, email=email)
+        new_job.save()
 
     return redirect("/")
 
@@ -44,10 +45,10 @@ def submit(user_id=None):
 @app.route("/delete/<user_id>", methods=['POST'])
 def delete(user_id):
     if user_id:
-        user = storage.find_one({'id': user_id})
-        if user:
-            user_obj = User(**user)
-            user_obj.delete()
+        job = storage.find_one({'id': user_id})
+        if job:
+            job_obj = JobApp(**job)
+            job_obj.delete()
             # flash("User deleted successfully.", "success")
     return redirect(url_for('index'))
 
