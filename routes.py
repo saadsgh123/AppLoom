@@ -19,7 +19,7 @@ def add(user_id):
     if user_id:
         # Fetch the user from storage if user_id is provided
         user = storage.find_one(JobApp, {'id': user_id})
-    return render_template('add.html', user=user)  # Pass the full user object, not just user['id']
+    return render_template('jobapp.html', user=user)  # Pass the full user object, not just user['id']
 
 
 @app.route('/submit', methods=['POST'])
