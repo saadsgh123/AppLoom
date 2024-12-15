@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    users = storage.find_all()
+    users = storage.find_all(JobApp)
     return render_template('index.html', users=users)
 
 
@@ -18,7 +18,7 @@ def add(user_id):
     user = None
     if user_id:
         # Fetch the user from storage if user_id is provided
-        user = storage.find_one({'id': user_id})
+        user = storage.find_one(JobApp, {'id': user_id})
     return render_template('add.html', user=user)  # Pass the full user object, not just user['id']
 
 
