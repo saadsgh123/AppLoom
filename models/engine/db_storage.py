@@ -46,7 +46,7 @@ class DBStorage:
         Returns:
             InsertManyResult: The result of the insert operation.
         """
-        return self.db[self.collections["User"]].insert_many(data_list)
+        return self.db[self.collections["JobApp"]].insert_many(data_list)
 
     def find_one(self, query):
         """
@@ -58,7 +58,7 @@ class DBStorage:
         Returns:
             dict: The matched document or None if no match is found.
         """
-        return self.db[self.collections["User"]].find_one(query)
+        return self.db[self.collections["JobApp"]].find_one(query)
 
     def find_all(self):
         """
@@ -67,7 +67,7 @@ class DBStorage:
         Returns:
             list: List of all documents in the collection.
         """
-        return list(self.db[self.collections["User"]].find())
+        return list(self.db[self.collections["JobApp"]].find())
 
     def update_one(self, query, update):
         """
@@ -80,7 +80,7 @@ class DBStorage:
         Returns:
             UpdateResult: The result of the update operation.
         """
-        return self.db[self.collections["User"]].update_one(query, update)
+        return self.db[self.collections["JobApp"]].update_one(query, update)
 
     def delete_one(self, query):
         """
@@ -92,7 +92,7 @@ class DBStorage:
         Returns:
             DeleteResult: The result of the delete operation.
         """
-        return self.db[self.collections["User"]].delete_one(query)
+        return self.db[self.collections["JobApp"]].delete_one(query)
 
     def delete_many(self, query):
         """
@@ -104,7 +104,7 @@ class DBStorage:
         Returns:
             DeleteResult: The result of the delete operation.
         """
-        return self.db[self.collections["User"]].delete_many(query)
+        return self.db[self.collections["JobApp"]].delete_many(query)
 
     def close_connection(self):
         """
