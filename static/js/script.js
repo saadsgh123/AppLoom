@@ -56,7 +56,7 @@ function add_job_app() {
             headers: {
                     'Content-Type': 'application/json', // Specify JSON data
             },
-            body: JSON.stringify({ email: email, company: company, description: description}),
+            body: JSON.stringify({ 'email': email, 'company': company, 'description': description}),
         })
         .then(r => r.json()).then(data => {
             if (data.status === "success") {
