@@ -29,7 +29,7 @@ function changeButtonDesign() {
                     <p>Document Name: <a href="/path/to/generated/document/${data.document_name}" target="_blank">${data.document_name}</a></p>
                 `;
             } else {
-                // If result is still pending
+                // If the result is still pending
                 resultSection.innerHTML = `
                     <h2>Generating Application...</h2>
                     <p>Please wait while we generate your application.</p>
@@ -41,4 +41,19 @@ function changeButtonDesign() {
             loadingBar.style.display = "none";
             resultSection.innerHTML = `<p>Error: ${error.message}</p>`;
         });
+}
+
+function add_job_app() {
+
+    const obj_saved = document.getElementById('saved-response');
+
+    fetch('submit/')
+        .then(r => r.json()).then(data => {
+            if (data.status === "success") {
+                obj_saved.style.display = "block"
+                setTimeout(()=> {
+                    obj_saved.style.display = "none"
+                }, 1000)
+            }
+    })
 }

@@ -12,7 +12,7 @@
             <h1>Job Application</h1>
             <form>
                 <label for="job-title">Job Title</label>
-                <input type="text" id="job-title" placeholder="Enter Job Title">
+                <input type="text" id="job-title" placeholder="Enter Job Title" value="">
 
                 <label for="email">Email</label>
                 <input type="email" id="email" placeholder="Enter Email">
@@ -24,9 +24,11 @@
                 <textarea id="description" placeholder="Enter Job Description"></textarea>
             </form>
 
+            <h3 id="saved-response" class="saved-response"> Job application is saved </h3>
+
             <div class="buttons">
                 <button class="delete">Delete</button>
-                <button class="save">Save</button>
+                <button class="save" onclick="add_job_app()">Save</button>
             </div>
         </div>
         {% if jobapp %}
@@ -36,7 +38,7 @@
 
             <button id="generate-btn" onclick="changeButtonDesign()">
                 <img src="https://via.placeholder.com/20" alt="Icon" id="button-icon">
-                Generate Application hhhhhh
+                Generate Application
             </button>
 
             <!-- Loading Bar -->

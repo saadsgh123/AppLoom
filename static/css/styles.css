@@ -166,6 +166,10 @@ body {
     animation: loading 2s linear infinite;
 }
 
+.saved-response {
+    display: none;
+}
+
 /* Keyframes for loading bar animation */
 @keyframes loading {
     0% {

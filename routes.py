@@ -14,19 +14,11 @@ def index():
     return render_template('index.html', users=users)
 
 
-def check_result_ready():
-    # This simulates a delay in getting the result
-    time.sleep(3)  # Simulate 3 seconds of processing time
-    return True  # Return True when result is ready, or False if still processing
 
 
 @app.route('/check_result', methods=['GET'])
 def check_result():
-    result_ready = check_result_ready()
-    if result_ready:
-        return jsonify({'status': 'success', 'message': 'Application Generated'})
-    else:
-        return jsonify({'status': 'pending', 'message': 'Please wait...'}), 202
+    return None
 
 
 @app.route('/add', defaults={'user_id': None})
@@ -51,12 +43,14 @@ def submit(user_id=None):
             job_obj = JobApp(**job)
             job_obj.update()
     else:
-        username = request.form.get('username')
+        job_title = request.form.get('job-title')
         email = request.form.get('email')
-        new_job = JobApp(username=username, email=email)
+        company = request.form.get('company')
+        description = request.form.get('description')
+        new_job = JobApp(job_title=job_title, email=email, company=company, description=description)
         new_job.save()
 
-    return redirect("/")
+    return jsonify({"status": "success"})
 
 
 @app.route("/delete/<user_id>", methods=['POST'])
