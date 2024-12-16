@@ -44,26 +44,29 @@ function changeButtonDesign() {
 }
 
 function add_job_app() {
-
     const obj_saved = document.getElementById('saved-response');
-    const email = document.getElementById('email').value
-    const company = document.getElementById('company').value
-    const description = document.getElementById('email').value
+    const email = document.getElementById('email').value;
+    const company = document.getElementById('company').value;
+    const description = document.getElementById('description').value;  // Corrected field
 
-    fetch('submit/',
+    fetch('/submit',  // Corrected URL
         {
-            method:'POST',
+            method: 'POST',
             headers: {
-                    'Content-Type': 'application/json', // Specify JSON data
+                'Content-Type': 'application/json', // Specify JSON data
             },
-            body: JSON.stringify({ 'email': email, 'company': company, 'description': description}),
+            body: JSON.stringify({ email: email, company: company, description: description }), // Send data as JSON
         })
-        .then(r => r.json()).then(data => {
+        .then(r => r.json())
+        .then(data => {
             if (data.status === "success") {
-                obj_saved.style.display = "block"
-                setTimeout(()=> {
-                    obj_saved.style.display = "none"
-                }, 1000)
+                obj_saved.style.display = "block";
+                setTimeout(() => {
+                    obj_saved.style.display = "none";
+                }, 1000);
             }
-    })
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }

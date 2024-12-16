@@ -32,25 +32,30 @@ def add(job_id):
 
 
 @app.route('/submit', methods=['POST'])
-@app.route('/submit/<job_id>', methods=['POST'])  # Accept user_id
+@app.route('/submit/<job_id>', methods=['POST'])  # Accept job_id
 def submit(job_id=None):
+    data = request.json  # Parse JSON from the request body
     if job_id:
-        # Update existing user
+        # Update existing job
         job = storage.find_one({'id': job_id})
         if job:
-            job['username'] = request.form.get('username')
-            job['email'] = request.form.get('email')
+            job['job_title'] = data.get('job-title')  # Use JSON keys
+            job['email'] = data.get('email')
+            job['company'] = data.get('company')
+            job['description'] = data.get('description')
             job_obj = JobApp(**job)
             job_obj.update()
     else:
-        job_title = request.form.get('job-title')
-        email = request.form.get('email')
-        company = request.form.get('company')
-        description = request.form.get('description')
+        # Add new job
+        job_title = data.get('job-title')  # Use JSON keys
+        email = data.get('email')
+        company = data.get('company')
+        description = data.get('description')
         new_job = JobApp(job_title=job_title, email=email, company=company, description=description)
         new_job.save()
 
     return jsonify({"status": "success"})
+
 
 
 @app.route("/delete/<job_id>", methods=['POST'])
@@ -62,6 +67,14 @@ def delete(job_id):
             job_obj.delete()
             # flash("User deleted successfully.", "success")
     return redirect(url_for('index'))
+
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    print("Request received at /submit")
+    print("Request Data:", request.json)
+    return jsonify({"status": "success"})
+
 
 
 
