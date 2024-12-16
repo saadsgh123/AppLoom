@@ -29,8 +29,11 @@
                 <button class="save">Save</button>
             </div>
         </div>
+        {% if jobapp %}
+            <h1> Nothing to display </h1>
+        {% else %}
+        <div class="generate-section" id="generate-section"
 
-        <div class="generate-section" id="generate-section">
             <button id="generate-btn" onclick="changeButtonDesign()">
                 <img src="https://via.placeholder.com/20" alt="Icon" id="button-icon">
                 Generate Application
@@ -40,12 +43,8 @@
             <div class="loading-bar" id="loading-bar">
                 <span></span>
             </div>
+        {% endif %}
 
-            <!-- Result Section -->
-            <div class="result-section" id="result-section">
-                <h2>Application Generated Successfully</h2>
-                <p>Your job application has been generated!</p>
-            </div>
         </div>
     </div>
 
