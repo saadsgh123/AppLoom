@@ -46,8 +46,18 @@ function changeButtonDesign() {
 function add_job_app() {
 
     const obj_saved = document.getElementById('saved-response');
+    const email = document.getElementById('email').value
+    const company = document.getElementById('company').value
+    const description = document.getElementById('email').value
 
-    fetch('submit/')
+    fetch('submit/',
+        {
+            method:'POST',
+            headers: {
+                    'Content-Type': 'application/json', // Specify JSON data
+            },
+            body: JSON.stringify({ email: email, company: company, description: description}),
+        })
         .then(r => r.json()).then(data => {
             if (data.status === "success") {
                 obj_saved.style.display = "block"

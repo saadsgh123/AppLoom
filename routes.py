@@ -21,22 +21,22 @@ def check_result():
     return None
 
 
-@app.route('/add', defaults={'user_id': None})
-@app.route('/add/<user_id>')
-def add(user_id):
-    user = None
-    if user_id:
-        # Fetch the user from storage if user_id is provided
-        user = storage.find_one(JobApp, {'id': user_id})
-    return render_template('jobapp.html', user=user)  # Pass the full user object, not just user['id']
+@app.route('/add', defaults={'job_id': None})
+@app.route('/add/<job_id>')
+def add(job_id):
+    jobapp = None
+    if job_id:
+        # Fetch the user from storage if job_id is provided
+        jobapp = storage.find_one(JobApp, {'id': job_id})
+    return render_template('jobapp.html', jobapp=jobapp)  # Pass the full user object, not just user['id']
 
 
 @app.route('/submit', methods=['POST'])
-@app.route('/submit/<user_id>', methods=['POST'])  # Accept user_id
-def submit(user_id=None):
-    if user_id:
+@app.route('/submit/<job_id>', methods=['POST'])  # Accept user_id
+def submit(job_id=None):
+    if job_id:
         # Update existing user
-        job = storage.find_one({'id': user_id})
+        job = storage.find_one({'id': job_id})
         if job:
             job['username'] = request.form.get('username')
             job['email'] = request.form.get('email')
@@ -53,10 +53,10 @@ def submit(user_id=None):
     return jsonify({"status": "success"})
 
 
-@app.route("/delete/<user_id>", methods=['POST'])
-def delete(user_id):
-    if user_id:
-        job = storage.find_one({'id': user_id})
+@app.route("/delete/<job_id>", methods=['POST'])
+def delete(job_id):
+    if job_id:
+        job = storage.find_one({'id': job_id})
         if job:
             job_obj = JobApp(**job)
             job_obj.delete()
