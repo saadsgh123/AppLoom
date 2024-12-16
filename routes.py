@@ -1,4 +1,6 @@
-from flask import Flask, request, render_template, redirect, url_for, flash
+import time
+
+from flask import Flask, request, render_template, redirect, url_for, flash, jsonify
 from models import storage
 from models.job_app import JobApp
 from models.user import User
@@ -10,6 +12,21 @@ app = Flask(__name__)
 def index():
     users = storage.find_all(JobApp)
     return render_template('index.html', users=users)
+
+
+def check_result_ready():
+    # This simulates a delay in getting the result
+    time.sleep(3)  # Simulate 3 seconds of processing time
+    return True  # Return True when result is ready, or False if still processing
+
+
+@app.route('/check_result', methods=['GET'])
+def check_result():
+    result_ready = check_result_ready()
+    if result_ready:
+        return jsonify({'status': 'success', 'message': 'Application Generated'})
+    else:
+        return jsonify({'status': 'pending', 'message': 'Please wait...'}), 202
 
 
 @app.route('/add', defaults={'user_id': None})
