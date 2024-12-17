@@ -102,7 +102,7 @@ class DBStorage:
         Returns:
             DeleteResult: The result of the delete operation.
         """
-        collection = self._get_collection_by_class(model_class)
+        collection = self._get_collection(model_class)
         return collection.delete_one(query)
 
     def delete_many(self, model_class, query):
