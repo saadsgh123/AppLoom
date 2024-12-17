@@ -7,6 +7,7 @@ from datetime import datetime
 from os import getenv
 import uuid
 import models
+from models.job_app import JobApp
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -46,7 +47,7 @@ class BaseModel:
 
     def update(self):
         self.updated_at = datetime.utcnow()
-        models.storage.update_one({'id': self.id}, {'$set': self.to_dict()})
+        models.storage.update_one(JobApp, {'id': self.id}, {'$set': self.to_dict()})
 
     def to_dict(self, save_fs=None):
         """returns a dictionary containing all keys/values of the instance"""
