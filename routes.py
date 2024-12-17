@@ -61,7 +61,7 @@ def submit(job_id=None):
 @app.route("/delete/<job_id>", methods=['POST'])
 def delete(job_id):
     if job_id:
-        job = storage.find_one({'id': job_id})
+        job = storage.find_one(JobApp, {'id': job_id})
         if job:
             job_obj = JobApp(**job)
             job_obj.delete()
