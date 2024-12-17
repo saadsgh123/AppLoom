@@ -28,7 +28,7 @@
 
             <div class="buttons">
                 {% if jobapp %}
-                <button class="update" onclick="">Save</button>
+                <button class="save" onclick="update_job_app('{{ jobapp.id }}')">Update</button>
                 {% else %}
                 <button class="save" onclick="add_job_app()">Save</button>
                 <button class="delete">Delete</button>

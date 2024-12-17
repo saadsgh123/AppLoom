@@ -43,7 +43,7 @@ function changeButtonDesign() {
         });
 }
 
-function add_job_app(jobapp_id) {
+function add_job_app() {
     const obj_saved = document.getElementById('saved-response');
     const job_title = document.getElementById('job_title').value;
     const email = document.getElementById('email').value;
@@ -57,6 +57,35 @@ function add_job_app(jobapp_id) {
                 'Content-Type': 'application/json', // Specify JSON data
             },
             body: JSON.stringify({ job_title: job_title, email: email, company: company, description: description }),
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.status === "success") {
+                obj_saved.style.display = "block";
+                setTimeout(() => {
+                    obj_saved.style.display = "none";
+                }, 1000);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function update_job_app(jobapp_id) {
+    const obj_saved = document.getElementById('saved-response');
+    const job_title = document.getElementById('job_title').value;
+    const email = document.getElementById('email').value;
+    const company = document.getElementById('company').value;
+    const description = document.getElementById('description').value;
+
+    fetch('/submit/' + jobapp_id,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: jobapp_id, job_title: job_title, email: email, company: company, description: description }),
         })
         .then(r => r.json())
         .then(data => {
