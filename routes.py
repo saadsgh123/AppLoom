@@ -46,8 +46,8 @@ def submit(job_id=None):
             job_obj = JobApp(**job)
             job_obj.update()
     else:
-        # Add new job
-        job_title = data.get('job-title')  # Use JSON keys
+        # Add a new job
+        job_title = data.get('job_title')
         email = data.get('email')
         company = data.get('company')
         description = data.get('description')
