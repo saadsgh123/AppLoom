@@ -46,7 +46,7 @@ class DBStorage:
         Returns:
             InsertManyResult: The result of the insert operation.
         """
-        collection = self._get_collection(model_class)
+        collection = self._get_collection_by_class(model_class)
         return collection.insert_many(data_list)
 
     def find_one(self, model_class, query):
@@ -60,7 +60,7 @@ class DBStorage:
         Returns:
             dict: The matched document or None if no match is found.
         """
-        collection = self._get_collection(model_class)
+        collection = self._get_collection_by_class(model_class)
         return collection.find_one(query)
 
     def find_all(self, model_class):
@@ -73,7 +73,7 @@ class DBStorage:
         Returns:
             list: List of all documents in the collection.
         """
-        collection = self._get_collection(model_class)
+        collection = self._get_collection_by_class(model_class)
         return list(collection.find())
 
     def update_one(self, model_class, query, update):
@@ -116,7 +116,7 @@ class DBStorage:
         Returns:
             DeleteResult: The result of the delete operation.
         """
-        collection = self._get_collection(model_class)
+        collection = self._get_collection_by_class(model_class)
         return collection.delete_many(query)
 
     def close_connection(self):
@@ -138,7 +138,7 @@ class DBStorage:
         class_name = data.__class__.__name__
         return self.collections.get(class_name)
 
-    def _get_collection_by_class(self, model_class: BaseModel):
+    def _get_collection_by_class(self, model_class):
         """
         Retrieve the collection corresponding to the given class.
 
@@ -148,5 +148,5 @@ class DBStorage:
         Returns:
             Collection: MongoDB collection.
         """
-        class_name = model_class.__class__.__name__
+        class_name = model_class.__name__
         return self.collections.get(class_name)
