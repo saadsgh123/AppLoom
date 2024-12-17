@@ -138,7 +138,7 @@ class DBStorage:
         class_name = data.__class__.__name__
         return self.collections.get(class_name)
 
-    def _get_collection_by_class(self, model_class):
+    def _get_collection_by_class(self, model_class: BaseModel):
         """
         Retrieve the collection corresponding to the given class.
 
@@ -148,5 +148,5 @@ class DBStorage:
         Returns:
             Collection: MongoDB collection.
         """
-        class_name = model_class.__name__
+        class_name = model_class.__class__.__name__
         return self.collections.get(class_name)
