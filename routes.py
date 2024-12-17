@@ -39,7 +39,7 @@ def submit(job_id=None):
         # Update existing job
         job = storage.find_one({'id': job_id})
         if job:
-            job['job_title'] = data.get('job-title')  # Use JSON keys
+            job['job_title'] = data.get('job_title')  # Use JSON keys
             job['email'] = data.get('email')
             job['company'] = data.get('company')
             job['description'] = data.get('description')

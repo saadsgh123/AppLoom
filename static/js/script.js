@@ -43,9 +43,9 @@ function changeButtonDesign() {
         });
 }
 
-function add_job_app() {
+function add_job_app(jobapp_id) {
     const obj_saved = document.getElementById('saved-response');
-    const job_title = document.getElementById('job-title').value;
+    const job_title = document.getElementById('job_title').value;
     const email = document.getElementById('email').value;
     const company = document.getElementById('company').value;
     const description = document.getElementById('description').value;  // Corrected field
@@ -56,7 +56,7 @@ function add_job_app() {
             headers: {
                 'Content-Type': 'application/json', // Specify JSON data
             },
-            body: JSON.stringify({ job_title: job_title, email: email, company: company, description: description }),
+            body: JSON.stringify({job_title: job_title, email: email, company: company, description: description }),
         })
         .then(r => r.json())
         .then(data => {
