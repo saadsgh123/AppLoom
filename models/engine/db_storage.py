@@ -149,4 +149,4 @@ class DBStorage:
             Collection: MongoDB collection.
         """
         class_name = model_class.__class__.__name__
-        return self.collections.get(class_name)
+        return self.collections.get(str(class_name))
