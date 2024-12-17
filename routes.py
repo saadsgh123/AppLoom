@@ -34,12 +34,12 @@ def add(job_id):
 @app.route('/submit', methods=['POST'])
 @app.route('/submit/<job_id>', methods=['POST'])  # Accept job_id
 def submit(job_id=None):
-    data = request.json  # Parse JSON from the request body
+    data = request.json
     if job_id:
         # Update existing job
-        job = storage.find_one({'id': job_id})
+        job = storage.find_one(model_class=JobApp, query={'id': job_id})
         if job:
-            job['job_title'] = data.get('job_title')  # Use JSON keys
+            job['job_title'] = data.get('job_title')
             job['email'] = data.get('email')
             job['company'] = data.get('company')
             job['description'] = data.get('description')
