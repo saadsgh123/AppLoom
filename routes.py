@@ -129,7 +129,3 @@ def delete(job_id):
         job_obj = JobApp(**job)
         job_obj.delete()
     return redirect(url_for('feed'))
-
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
