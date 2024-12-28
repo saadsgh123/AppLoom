@@ -69,9 +69,6 @@ def logout():
 
 @app.route('/jobs')
 def jobs():
-    if 'user_info' not in session:
-        flash("You need to log in first.", "warning")
-        return redirect(url_for("jobs"))
     users = storage.find_all(JobApp)
     return render_template('index.html', users=users)
 
